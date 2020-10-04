@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <link rel="stylesheet" href="{% static 'blog/main.css' %}">
+   <link rel="FaviconIcon" href="{% static 'blog/walkie-talkie.ico' %}" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static 'blog/walkie-talkie.ico' %}" type="image/x-icon">
+
+    {% if title %}
+         <title> Over 'n' Out - {{ title }}</title>
+    {% else %}
+         <title> Over 'n' Out </title>
+    {% endif %}
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Over 'n' Out</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+          <div class="content-section">
+            <h3>Entertainment Bar</h3>
+            <p class='text-muted'>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home' %}">Latest Posts</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://www.youtube.com/" target="_blank">Watch YouTube</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://ww1.solarmovie.fun/solarmovie" target="_blank">Free Movies and TV Series</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://gaana.com/" target="_blank">Listen to Songs</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://kissasian.sh/" target="_blank">Watch Asian Dramas and Movies</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://kimcartoon.to/" target="_blank">Watch Cartoons</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://kissanime.ru/" target="_blank">Watch Anime</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://www.miniclip.com/games/en/" target="_blank">Play games on Miniclip</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://readcomiconline.to/" target="_blank">Read Comics for Free</a></li>
+                <li class="list-group-item list-group-item-light"><a href="https://www.bbc.com/news" target="_blank">Read News</a></li>
+              </ul>
+              </ul>
+              </ul>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <small><center>Page coded by <a href="https://frazermitt.github.io/index.html" target="_blank">EUHID AMAN</a> | Icons made by <a href="https://www.flaticon.com/authors/photo3idea-studio" target="_blank" title="photo3idea_studio">photo3idea_studio</a> from <a href="https://www.flaticon.com/" target="_blank" title="Flaticon">www.flaticon.com</a></center></small>
+  </body>
+</html>
